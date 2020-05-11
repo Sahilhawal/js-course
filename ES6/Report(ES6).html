@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Town Report</h1>
+  </body>
+  <script>
+    class property {
+      constructor(name, buildYear) {
+        this.name = name;
+        this.buildYear = buildYear;
+      }
+    }
+
+    class park extends property {
+      constructor(name, buildYear, trees, area) {
+        super(name, buildYear);
+        this.trees = trees;
+        this.area = area;
+      }
+
+      calcDensity() {
+        const density = this.trees / this.area;
+        console.log(`Density of ${this.name} is ${density}`);
+      }
+    }
+
+    class streets extends property {
+      constructor(name, buildYear, length, size = 2) {
+        super(name, buildYear);
+        this.length = length;
+
+        this.size = size;
+      }
+      decalreSize() {
+        const sizeMap = new Map();
+        sizeMap.set(1, "small");
+        sizeMap.set(2, "Medium");
+        sizeMap.set(3, "Large");
+        console.log(`${this.name} is ${sizeMap.get(this.size)}`);
+      }
+    }
+
+    // Park collection
+    const parks = [
+      new park("Park A", 1985, 500, 400),
+      new park("Park B", 1950, 1500, 800),
+      new park("Park C", 1999, 550, 100),
+    ];
+
+    const streetsList = [
+      new streets("street A", 1859, 50, 3),
+      new streets("street B", 1900, 23, 1),
+    ];
+
+    // Parks report
+    console.log("----------Report for Parks----------");
+    parks.forEach((park) => {
+      park.calcDensity();
+    });
+
+    const ages = parks.map((park) => 2020 - park.buildYear);
+    const total = ages.reduce((total, age) => total + age);
+    console.log(`${total / parks.length} is the average age`);
+
+    const thousandTrees = parks
+      .map((park) => park.trees)
+      .findIndex((trees) => trees > 1000);
+    console.log(`${parks[1].name} has more than 100 trees`);
+
+    //Street report
+    console.log("--------------Report for Streets-------------");
+    const Lengths = streetsList.map((street) => street.length);
+    const totalLength = Lengths.reduce((total, length) => total + length);
+
+    console.log(
+      `${totalLength} is the total lenght of streets and ${
+        totalLength / streetsList.length
+      } is the average length of streets`
+    );
+
+    streetsList.forEach((street) => street.decalreSize());
+  </script>
+</html>
