@@ -4,6 +4,7 @@ var Question = function (qstn, options, indexOfAnswer) {
   this.answer = indexOfAnswer;
 };
 
+
 var timeQuestion = new Question("what time it is?", [2, 3, 4], 3);
 var nameQuestion = new Question("What is my birthdate?", [2, 4, 24], 24);
 
